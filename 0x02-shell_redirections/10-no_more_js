@@ -1,2 +1,2 @@
 #!/bin/bash
-rm -r --one-file-system *.js
+rm -r --one-file-system "*.js"
