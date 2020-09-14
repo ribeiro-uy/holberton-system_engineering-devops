@@ -1,1 +1,2 @@
-hello vagrant
+#!/bin/bash
+echo hello $USER
