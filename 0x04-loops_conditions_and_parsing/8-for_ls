@@ -6,5 +6,5 @@
 
 for folders in ./*
 do
-	echo $folders | cut -d'-' -f2
+	echo "$folders" | cut -d'-' -f2
 done
