@@ -6,11 +6,11 @@ case "$1" in
 	echo "manage_my_process started"
 	;;
     stop)
-	pkill -f /var/run/my_process.pid & rm /var/run/my_process.pid
+	pkill -f manage_my_process.pid & rm /var/run/my_process.pid
 	echo "manage_my_process stopped"
 	;;
     restart)
-	pkill -f /var/run/my_process.pid & rm /var/run/my_process.pid
+	pkill -f my_process.pid & rm /var/run/my_process.pid
 	./manage_my_process & pgrep -n manage_my_process > /var/run/my_process.pid
 	echo "manage_my_process restarted"
 	;;
