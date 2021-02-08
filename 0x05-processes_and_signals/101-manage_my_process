@@ -2,16 +2,20 @@
 # Script that manages the file manage_my_process
 case "$1" in
     start)
-	./manage_my_process & pgrep -f manage_my_process > /var/run/my_process.pid
+	./manage_my_process &
+	pgrep -f manage_my_process > /var/run/my_process.pid
 	echo "manage_my_process started"
 	;;
     stop)
-	pkill -f manage_my_process.pid & rm /var/run/my_process.pid
+	pkill -F /var/run/my_process.pid
+	rm /var/run/my_process.pid
 	echo "manage_my_process stopped"
 	;;
     restart)
-	pkill -f manage_my_process.pid & rm /var/run/my_process.pid
-	./manage_my_process & pgrep -n manage_my_process > /var/run/my_process.pid
+	pkill -F /var/run/my_process.pid
+	rm /var/run/my_process.pid
+	./manage_my_process &
+	pgrep -fn manage_my_process > /var/run/my_process.pid
 	echo "manage_my_process restarted"
 	;;
     *)
