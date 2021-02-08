@@ -11,15 +11,15 @@ exit_sigterm()
 {
     echo "I hate the kill command"
     rm /var/run/holbertonscript.pid
-    trap - SIGINT SIGTERM # clear the trap
+    trap - SIGINT SIGTERM  # clear trap
     kill -- -$$ # Sends SIGTERM to child/sub processes
 }
 
 exit_sigquit()
 {
     rm /var/run/holbertonscript.pid
-    trap - SIGINT SIGTERM # clear the trap
-    kill -- -$$ # Sends SIGTERM to child/sub processes
+    trap - SIGINT SIGTERM
+    kill -- -$$
 }
 
 echo $$ > /var/run/holbertonscript.pid
