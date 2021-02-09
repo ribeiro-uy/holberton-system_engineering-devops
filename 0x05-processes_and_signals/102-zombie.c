@@ -7,6 +7,7 @@
  *
  * Return: 0
  */
+
 int infinite_while(void)
 {
 	while (1)
@@ -21,18 +22,18 @@ int infinite_while(void)
  *
  * Return: 0
  */
+
 int main(void)
 {
 	int i;
 	pid_t zombie;
 
-	while (i <= 5)
+	for (i = 0; i < 5; i++)
 	{
 		zombie = fork();
 		if (zombie == 0)
 			exit(0);
 		printf("Zombie process created, PID: %d\n", zombie);
-		i++;
 	}
 	infinite_while();
 	return (0);
