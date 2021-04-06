@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# configures a new Ubuntu machine
+# Install nginx on web-01 server
+
+sudo apt update
+sudo apt -y install nginx
+sudo chown -R "$USER":"$USER"  /var/www/html
+sudo chown -R "$USER":"$USER"  /etc/nginx/sites-available/
+sudo service nginx start
+echo "Holberton School" > /var/www/html/index.nginx-debian.html
+new_string="\\\n\terror_page 404 /custom_404.html;\n"
+check_exist=$(grep "error_page 404" /etc/nginx/sites-available/default)
+if [[ -z $check_exist ]];
+then
+    echo "Ceci n'est pas une page" > /var/www/html/custom_404.html
+    sed -i "40i $STRING" /etc/nginx/sites-available/default
+    service nginx restart
+fi
+
