@@ -13,6 +13,6 @@ check_exist=$(grep "redirect_me" /etc/nginx/sites-available/default)
 if [[ -z $check_exist ]];
 then
     sed -i "42i $new_string" /etc/nginx/sites-available/default
+    sudo service ngnix restart
 fi
-sudo service nginx reload
-sudo service ngnix restart
+
