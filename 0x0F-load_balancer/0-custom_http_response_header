@@ -4,7 +4,7 @@ sudo apt -y install nginx
 # force 80 port
 sudo ufw allow 'Nginx HTTP'
 sudo service nginx start
-newline_add="\\\tadd_header X-Served-By /etc/nginx/nginx.conf;"
+newline_add="\\\tadd_header X-Served-By $HOSTNAME;"
 check_exit=$(grep "add_header" /etc/nginx/nginx.conf)
 if [[ -z $check_exit ]];
 then
