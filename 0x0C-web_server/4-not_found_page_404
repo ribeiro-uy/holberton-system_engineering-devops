@@ -6,8 +6,25 @@ sudo apt update
 sudo apt -y install nginx
 sudo chown -R "$USER":"$USER"  /var/www/html
 sudo chown -R "$USER":"$USER"  /etc/nginx/sites-available/
-echo "Holberton School" > /var/www/html/index.nginx-debian.html
+echo "Holberton School" > /var/www/html/index.html
 echo "Ceci n'est pas une page" > /var/www/html/custom_404.html
-new="_;\n\n\trewrite \/redirect_me https:\/\/www.youtube.com\/watch?v=QH2-TGUlwu4 permanent;\n\n\terror_page 404 \/404.html;\n\tlocation = \/404.html {\n\t\troot \/var\/www\/html;\n\t\tinternal;\n\t}"
-sed -i "s/_;/$new/" /etc/nginx/sites-available/default
+redirect_me="\\\n\tlocation /redirect_me {\n\t\t return 301 https://www.youtube.com/watch?v=3MbaGJN2ioQ;\n\t}\n"
+
+newline_404="\\\terror_page 404 /404.html;\n\tlocation = /404.html {\n\t\troot /usr/share/nginx/html;\n\t\tinternal;\n\t}"
+
+# Check redirect_me
+check_redirect_me=$(grep "redirect_me" /etc/nginx/sites-available/default)
+if [[ -z $check_redirect_me ]];
+then
+    sed -i "42i $redirect_me" /etc/nginx/sites-available/default
+fi
+
+# Check 404_error
+check_404=$(grep "error_page" /etc/nginx/sites-available/default)
+if [[ -z $check_404 ]];
+then
+    sed -i "47i $newline_404" /etc/nginx/sites-available/default
+fi
+
 sudo service nginx restart
+sudo service nginx reload
