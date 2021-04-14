@@ -13,4 +13,4 @@ if [[ -z $check_exist ]];
 then
     sed -i "42i $new_string" /etc/nginx/sites-available/default
 fi
-sudo service ngnix restart
+sudo service nginx restart
