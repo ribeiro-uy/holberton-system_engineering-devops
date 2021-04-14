@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+sudo apt update
+sudo apt -y install nginx
+# force 80 port
+sudo ufw allow 'Nginx HTTP'
+sudo service nginx start
+newline_add="\\\tadd_header X-Served-By /etc/nginx/nginx.conf;"
+check_exit=$(grep "add_header" /etc/nginx/nginx.conf)
+if [[ -z $check_exit ]];
+then
+    sed -i "11i $newline_add" /etc/nginx/nginx.conf
+fi
+sudo service nginx restart
+sudo service nginx reload
