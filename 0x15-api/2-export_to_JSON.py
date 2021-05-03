@@ -18,9 +18,9 @@ if __name__ == '__main__':
     # create the csv writer object
     new_list = []
     for key in t:
-        new_dict["username"] = r.get('username')
         new_dict["task"] = key.get('title')
         new_dict["completed"] = key.get('completed')
+        new_dict["username"] = r.get('username')
         new_list.append(new_dict)
 
     json_dict = {}
