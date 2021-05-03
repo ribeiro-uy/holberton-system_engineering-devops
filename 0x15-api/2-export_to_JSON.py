@@ -20,8 +20,8 @@ if __name__ == '__main__':
     new_dict = {}
     for key in t:
         new_dict["username"] = r.get('username')
-        new_dict["completed"] = key.get('completed')
         new_dict["task"] = key.get('title')
+        new_dict["completed"] = key.get('completed')
         new_list.append(new_dict)
 
     json_dict = {}
