@@ -1,4 +1,5 @@
 # added option -l to make ApacheBench accept variable document length
-command => "sed -i 's/15/1500/g' /etc/default/nginx; service nginx restart",
-provider => 'shell'
+exec { 'sed increase ULIMIT number in concerned etc/default/nginx file':
+  command => "sed -i 's/15/1024/g' /etc/default/nginx; service nginx restart",
+  path    => ['/bin']
 }
