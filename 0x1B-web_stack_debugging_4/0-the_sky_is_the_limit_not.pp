@@ -1,4 +1,4 @@
 # added option -l to make ApacheBench accept variable document length
-exec { 'ab -c 100 -n 2000 localhost/':
+command => "sed -i 's/15/1500/g' /etc/default/nginx; service nginx restart",
 provider => 'shell'
 }
